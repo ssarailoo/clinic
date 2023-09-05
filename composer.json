@@ -1,0 +1,19 @@
+{
+    "name": "ssara/final_mvc",
+    "autoload": {
+        "psr-4": {
+            "": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Saeed Sarailoo",
+            "email": "ssarailoo@yahoo.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^10.21",
+        "vlucas/phpdotenv": "^5.5",
+        "larapack/dd": "^1.1"
+    }
+}
