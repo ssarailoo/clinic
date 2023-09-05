@@ -6,6 +6,9 @@ use Core\Application;
 use Core\Controller;
 use Core\Exceptions\ForbiddenException;
 use Core\Middlewares\AuthMiddleware;
+use Core\Middlewares\IsDoctorMiddleware;
+use Core\Middlewares\IsManagerMiddleware;
+use Core\Middlewares\IsPatientMiddleware;
 use Core\Request;
 use Core\Response;
 use Models\Doctor;
@@ -19,13 +22,33 @@ class ProfileController extends Controller
     {
         $this->registerMiddleware(new AuthMiddleware(['profilePatient']));
         $this->registerMiddleware(new AuthMiddleware(['profileDoctor']));
-        $this->registerMiddleware(new AuthMiddleware(['profileManager']));
         $this->registerMiddleware(new AuthMiddleware(['profileDoctorEdit']));
-
-
+        $this->registerMiddleware(new AuthMiddleware(['profileManager']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerSection']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerSectionEdit']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerSectionCreate']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerSectionDelete']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestDoctor']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestDoctorAccept']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestDoctorDecline']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestManager']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestManagerAccept']));
+        $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestManagerDecline']));
+        $this->registerMiddleware(new IsDoctorMiddleware(['profileDoctor']));
+        $this->registerMiddleware(new IsDoctorMiddleware(['profileDoctorEdit']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManager']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSectionEdit']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSectionCreate']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSectionDelete']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestDoctor']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestDoctorAccept']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestDoctorDecline']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestManager']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestManagerAccept']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestManagerDecline']));
+        $this->registerMiddleware(new IsPatientMiddleware(['ProfilePatient']));
+
+
     }
 
     public function profilePatient(Request $request, Response $response): false|array|string

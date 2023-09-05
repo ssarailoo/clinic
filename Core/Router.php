@@ -64,10 +64,6 @@ class Router
             $controller->action = $callback[1];
             $callback[0] = $controller;
             foreach ($controller->getMiddlewares() as $middleware) {
-                echo"<pre>";
-                var_dump($middleware);
-                echo"<pre>";
-
                 $middleware->execute();
             }
         }

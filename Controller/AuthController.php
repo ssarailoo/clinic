@@ -4,7 +4,7 @@ namespace Controller;
 
 use Core\Application;
 use Core\Controller;
-use Core\Middlewares\AuthMiddleware;
+
 use Core\Request;
 use Core\Response;
 
@@ -17,16 +17,12 @@ use Models\User;
 class AuthController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->registerMiddleware(new AuthMiddleware(['profile']));
-    }
+
 
     public function login(Request $request): false|array|string
     {
         $this->setLayout('no-nav');
         $data = $request->getBody();
-
         return $this->render('login');
 
 
@@ -139,8 +135,5 @@ class AuthController extends Controller
         $response->redirect('/');
 
     }
-    public function profile(Request $request, Response $response): false|array|string
-    {
-        return $this->render('profile');
-    }
+
 }

@@ -21,28 +21,28 @@ class AuthMiddleware extends BaseMiddleware
     public function execute(): void
     {
 
-        if (Application::getRole() === 0 && (
-                str_contains(Application::$app->request->getPath(), '/profile-doctor')
-                ||
-                str_contains(Application::$app->request->getPath(), '/profile-manager'))
-        ) {
-            throw new ForbiddenException();
-        }
-        if (Application::getRole() === 1 && (
-                str_contains(Application::$app->request->getPath(), '/profile-patient')
-                ||
-                str_contains(Application::$app->request->getPath(), '/profile-manager'))
-        ) {
-            throw new ForbiddenException();
-        }
-        if (Application::getRole() === 2 && (
-                str_contains(Application::$app->request->getPath(), '/profile-patient')
-                ||
-                str_contains(Application::$app->request->getPath(), '/profile-doctor'))
-        ) {
-            throw new ForbiddenException();
-
-        }
+//        if (Application::getRole() === 0 && (
+//                str_contains(Application::$app->request->getPath(), '/profile-doctor')
+//                ||
+//                str_contains(Application::$app->request->getPath(), '/profile-manager'))
+//        ) {
+//            throw new ForbiddenException();
+//        }
+//        if (Application::getRole() === 1 && (
+//                str_contains(Application::$app->request->getPath(), '/profile-patient')
+//                ||
+//                str_contains(Application::$app->request->getPath(), '/profile-manager'))
+//        ) {
+//            throw new ForbiddenException();
+//        }
+//        if (Application::getRole() === 2 && (
+//                str_contains(Application::$app->request->getPath(), '/profile-patient')
+//                ||
+//                str_contains(Application::$app->request->getPath(), '/profile-doctor'))
+//        ) {
+//            throw new ForbiddenException();
+//
+//        }
 
 
         if (Application::isGuest()) {
