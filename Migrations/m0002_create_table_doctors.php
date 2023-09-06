@@ -14,6 +14,9 @@ class m0002_create_table_doctors
                 $table->string('lastname', '255');
                 $table->string('email', '255');
                 $table->string('education', '255');
+                $table->string('address', '255');
+                $table->string('profile_pic', '255');
+                $table->tinyInteger('code_role')->default(1);
                 $table->string('password');
                 $table->unsignedBigInteger('section_id')->nullable()->default(null);
                 $table->integer('medical_code');

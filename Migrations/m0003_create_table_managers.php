@@ -11,6 +11,7 @@ class m0003_create_table_managers
             $table->string('lastname', '255');
             $table->string('email', '255');
             $table->string('password');
+            $table->tinyInteger('code_role')->default(2);
             $table->boolean('is_active')->default(false);
         });
     }

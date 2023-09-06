@@ -14,6 +14,7 @@ class m0004_create_table_patients
                 $table->string('lastname', '255');
                 $table->string('email', '255');
                 $table->string('password');
+                $table->tinyInteger('code_role')->default(0);
 
             });
         }
