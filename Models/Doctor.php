@@ -6,13 +6,13 @@ namespace Models;
 use AllowDynamicProperties;
 use Core\Application;
 
-#[AllowDynamicProperties] class Doctor extends User
+class Doctor extends User
 {
     public string $education='';
     public string $profile_pic='';
     public string $address='';
 
-    public string $section_id='';
+    public ?string $section_id=null;
     public string $medical_code='';
     public string  $is_active='';
     public  string $is_completed='';
@@ -21,13 +21,7 @@ use Core\Application;
     {
         return 'doctors';
     }
-    public function rules(): array
-    {
-        return array_merge( parent::rules(),[
-            'medical_code'=>[self::RULE_REQUIRED],
-            'education'=>[self::RULE_REQUIRED],
-            'profile_pic'=>[self::RULE_REQUIRED]]);
-    }
+
 
     public function labels(): array
     {

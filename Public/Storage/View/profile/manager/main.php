@@ -11,9 +11,9 @@ use Models\Manager;
 /** @var $model Manager */
 
 /** @var $this View */
-$this->title = 'Profile Doctor';
+$this->title = 'Profile Manager';
 ?>
-    <h1>Profile Doctor</h1>
+    <h1>Profile Manager</h1>
 
 
 <?php if (Application::$app->user->is_active==1) { ?>

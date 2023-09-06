@@ -52,7 +52,7 @@ class Database
     public function select($table, array $where = [],string $column='*')
     {
 
-        return Capsule::table($table)->where($where['column'], $where['operation'], $where['value'])->select($column)->first()->$column;
+        return Capsule::table($table)->where($where['column'], $where['operation'], $where['value'])->select($column)->first()->$column?? '';
 
     }
 

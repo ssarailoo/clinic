@@ -6,6 +6,8 @@ use Core\Application;
 use Core\Controller;
 use Core\Exceptions\ForbiddenException;
 use Core\Middlewares\AuthMiddleware;
+use Core\Middlewares\isActiveManagerMiddleware;
+use Core\Middlewares\isActiveDocMiddleware;
 use Core\Middlewares\IsDoctorMiddleware;
 use Core\Middlewares\IsManagerMiddleware;
 use Core\Middlewares\IsPatientMiddleware;
@@ -22,21 +24,36 @@ class ProfileController extends Controller
     {
         $this->registerMiddleware(new AuthMiddleware(['profilePatient']));
         $this->registerMiddleware(new AuthMiddleware(['profileDoctor']));
+        $this->registerMiddleware(new isActiveDocMiddleware(['profileDoctor']));
         $this->registerMiddleware(new AuthMiddleware(['profileDoctorEdit']));
+        $this->registerMiddleware(new isActiveDocMiddleware(['profileDoctorEdit']));
         $this->registerMiddleware(new AuthMiddleware(['profileManager']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManager']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerSection']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerSection']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerSectionEdit']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerSectionEdit']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerSectionCreate']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerSectionCreate']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerSectionDelete']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerSectionDelete']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestDoctor']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerRequestDoctor']));
+
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestDoctorAccept']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerRequestDoctorAccept']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestDoctorDecline']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerRequestDoctorDecline']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestManager']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerRequestManager']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestManagerAccept']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerRequestManagerAccept']));
         $this->registerMiddleware(new AuthMiddleware(['profileManagerRequestManagerDecline']));
+        $this->registerMiddleware(new isActiveManagerMiddleware(['profileManagerRequestManagerDecline']));
         $this->registerMiddleware(new IsDoctorMiddleware(['profileDoctor']));
         $this->registerMiddleware(new IsDoctorMiddleware(['profileDoctorEdit']));
         $this->registerMiddleware(new IsManagerMiddleware(['profileManager']));
+        $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSection']));
         $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSectionEdit']));
         $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSectionCreate']));
         $this->registerMiddleware(new IsManagerMiddleware(['profileManagerSectionDelete']));
@@ -46,7 +63,7 @@ class ProfileController extends Controller
         $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestManager']));
         $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestManagerAccept']));
         $this->registerMiddleware(new IsManagerMiddleware(['profileManagerRequestManagerDecline']));
-        $this->registerMiddleware(new IsPatientMiddleware(['ProfilePatient']));
+        $this->registerMiddleware(new IsPatientMiddleware(['profilePatient']));
 
 
     }

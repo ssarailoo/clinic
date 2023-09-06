@@ -21,10 +21,11 @@ class IsDoctorMiddleware extends BaseMiddleware
 
     public function execute()
     {
-      if (Application::getRole()!==1)
-          if ( in_array(Application::$app->controller->action, $this->actions)) {
+      if (Application::getRole()!==1) {
+          if (in_array(Application::$app->controller->action, $this->actions)) {
               throw new ForbiddenException();
           }
+      }
     }
 
 

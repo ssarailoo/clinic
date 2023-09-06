@@ -19,10 +19,11 @@ class IsManagerMiddleware extends BaseMiddleware
 
     public function execute()
     {
-        if (Application::getRole() !== 2)
+        if (Application::getRole() !== 2) {
             if (in_array(Application::$app->controller->action, $this->actions)) {
                 throw new ForbiddenException();
             }
+        }
     }
 
 }

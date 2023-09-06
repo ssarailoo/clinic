@@ -97,8 +97,9 @@ class Application
 
     public static function isAccActivated(): bool
     {
-        if (self::getRole() == 1 | 2)
+        if (self::getRole() ==! 0) {
             return self::$app->user->is_active == 1;
+        }
         return true;
     }
 

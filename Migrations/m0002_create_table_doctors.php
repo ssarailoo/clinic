@@ -19,7 +19,7 @@ class m0002_create_table_doctors
                 $table->integer('medical_code');
                 $table->boolean('is_active')->default(false);
                 $table->boolean('is_completed')->default(false);
-                $table->foreign('section_id')->references("id")->on('sections')->onDelete('cascade');
+                $table->foreign('section_id')->references("id")->on('sections');
 
             });
 

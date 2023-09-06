@@ -57,11 +57,7 @@ if (str_contains($class, 'Patient'))
 </head>
 
 <body>
-<?php if (Application::$app->session->getFlash('success')) { ?>
-    <div class="alert alert-success">
-        <?= Application::$app->session->getFlash('success') ?>
-    </div>
-<?php } ?>
+
 <!-- ======= Top Bar ======= -->
 <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
@@ -145,6 +141,11 @@ if (str_contains($class, 'Patient'))
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container">
+        <?php if (Application::$app->session->getFlash('success')) { ?>
+            <div class="alert alert-success">
+                <?= Application::$app->session->getFlash('success') ?>
+            </div>
+        <?php } ?>
         <h1>Welcome to Medilab</h1>
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>

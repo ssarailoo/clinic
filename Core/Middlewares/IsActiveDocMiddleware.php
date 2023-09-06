@@ -1,11 +1,13 @@
 <?php
 
+
 namespace Core\Middlewares;
 
 use Core\Application;
 use Core\Exceptions\ForbiddenException;
+use Core\Exceptions\NotActivatedException;
 
-class IsPatientMiddleware extends BaseMiddleware
+class IsActiveDocMiddleware extends BaseMiddleware
 {
     public array $actions;
 
@@ -19,11 +21,12 @@ class IsPatientMiddleware extends BaseMiddleware
 
     public function execute()
     {
-        if (Application::getRole() !== 0) {
+        if ((!Application::isAccActivated()) && Application::getRole() === 1) {
             if (in_array(Application::$app->controller->action, $this->actions)) {
-                throw new ForbiddenException();
+                throw new NotActivatedException();
             }
         }
+
     }
 
 }
