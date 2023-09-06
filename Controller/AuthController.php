@@ -14,6 +14,7 @@ use Models\Manager;
 use Models\Patient;
 use Models\User;
 
+
 class AuthController extends Controller
 {
 

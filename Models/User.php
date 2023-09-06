@@ -3,6 +3,7 @@
 namespace Models;
 
 use Core\Database\DbModel;
+use Illuminate\Validation\Rule;
 
 abstract class User extends DbModel
 {
@@ -12,14 +13,31 @@ abstract class User extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
+//    public function rules(): array
+//    {
+//        return [
+//            'firstname' => [self::RULE_REQUIRED],
+//            'lastname' => [self::RULE_REQUIRED],
+//            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => static::class]],
+//            'password' => [self::RULE_REQUIRED, [self::RULE_MIN_LENGTH, 'min' => 4], [self::RULE_MAX, 'max' => 24]],
+//            'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
+//        ];
+//    }
+
     public function rules(): array
     {
+        $tableName = static::tablename();
+
         return [
-            'firstname' => [self::RULE_REQUIRED],
-            'lastname' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => static::class]],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 4], [self::RULE_MAX, 'max' => 24]],
-            'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
+            'firstname' => ['required'],
+            'lastname' => ['required'],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique($tableName, 'email')
+            ],
+            'password' => ['required', 'min:4', 'max:20'],
+            'confirmPassword' => ['required', 'same:password'],
         ];
     }
 
