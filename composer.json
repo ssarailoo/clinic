@@ -17,6 +17,8 @@
         "vlucas/phpdotenv": "^5.5",
         "larapack/dd": "^1.1",
         "illuminate/validation": "^10.22",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "illuminate/filesystem": "^10.22",
+        "illuminate/translation": "^10.22"
     }
 }

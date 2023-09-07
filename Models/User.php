@@ -34,7 +34,7 @@ abstract class User extends DbModel
             'email' => [
                 'required',
                 'email',
-                Rule::unique($tableName, 'email')
+                "unique:mysql.$tableName,email"
             ],
             'password' => ['required', 'min:4', 'max:20'],
             'confirmPassword' => ['required', 'same:password'],
@@ -60,6 +60,7 @@ abstract class User extends DbModel
             'email' => $this->email,
             'password' => password_hash($this->password, PASSWORD_DEFAULT)];
     }
+
     public static function primaryKey(): string
     {
         return 'id';
